@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#1a252f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>نظام إدارة المدخلات الزراعية - ERP</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <h2><i class="fas fa-leaf"></i>نظام الواحة الخضراء المحاسبي</h2>
+    </header>
+    
+<nav class="main-nav">
+    <button onclick="secureAccess(dashboard)"><i class="fas fa-home"></i> الرئيسية</button>
+    <button onclick="secureAccess(productsPage)"><i class="fas fa-box"></i> الأصناف</button>
+    <button onclick="secureAccess(lowStockPage)"><i class="fas fa-exclamation-triangle"></i> نقص المخزون</button>
+    <button onclick="secureAccess(customersPage)"><i class="fas fa-users"></i> العملاء</button>
+    <button onclick="secureAccess(suppliersPage)"><i class="fas fa-truck"></i> الموردين</button>
+    <button onclick="secureAccess(accountsPage)"><i class="fas fa-list"></i> الحسابات</button>
+    <button onclick="secureAccess(cashPage)"><i class="fas fa-money-bill"></i> الصندوق</button>
+    <button onclick="secureAccess(salesPage)"><i class="fas fa-shopping-cart"></i> المبيعات</button>
+    <button onclick="secureAccess(purchasesPage)"><i class="fas fa-shopping-basket"></i> المشتريات</button>
+    <button onclick="secureAccess(stockPage)"><i class="fas fa-warehouse"></i> المخزون</button>
+    <button onclick="secureAccess(journalPage)"><i class="fas fa-book"></i> دفتر اليومية</button>
+    <button onclick="secureAccess(vouchersPage)"><i class="fas fa-receipt"></i> السندات</button>
+ <button onclick="secureAccess(settingsPage)"><i class="fas fa-cogs"></i> الإعدادات</button>
+    <button onclick="secureAccess(fiscalPeriodsPage)"><i class="fas fa-calendar-alt"></i> الفترات المالية</button>
+    <button onclick="secureAccess(reportsPage)"><i class="fas fa-chart-bar"></i> التقارير</button>
+    <button onclick="logout()" class="danger-btn"><i class="fas fa-sign-out-alt"></i> تسجيل خروج</button>
+</nav>
+
+    <main id="content" class="container"></main>
+
+    <!-- 1. تحميل مكتبة SQL.js أولاً (ضرورية لـ main.js) -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js" defer></script>
+
+<script src="js/qrcode.min.js" defer></script>
+
+<script src="js/crypto-js.min.js" defer></script>
+
+<script src="js/main.js" defer></script>
+
+<script src="js/accounts.js" defer></script>
+<script src="js/products.js" defer></script>
+<script src="js/customers.js" defer></script>
+<script src="js/suppliers.js" defer></script>
+<script src="js/sales.js" defer></script>
+<script src="js/quotations.js" defer></script>
+<script src="js/purchases.js" defer></script>
+<script src="js/stock.js" defer></script>
+<script src="js/cash.js" defer></script>
+<script src="js/journal.js" defer></script>
+<script src="js/vouchers.js" defer></script>
+<script src="js/fiscal_periods.js" defer></script>
+<script src="js/reports.js" defer></script>
+<script src="js/settings.js" defer></script>
+
+<script src="js/stability.js" defer></script>
+<script src="js/balance_rebuild.js" defer></script>
+<script defer>
+
+window.addEventListener("error", function (e) {
+
+    console.error("System Error:", e.message);
+
+});
+
+window.addEventListener("unhandledrejection", function (e) {
+
+    console.error("Promise Error:", e.reason);
+
+});
+
+</script>
+</body>
+</html>
