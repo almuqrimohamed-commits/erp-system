@@ -743,7 +743,10 @@ document.write(`
         <body>
             <div class="company-header"><div><h2>${company.name}</h2><p>${company.phone}</p><p>${company.address}</p></div><div>${company.logo ? `<img src="${company.logo}" style="height:60px">` : ''}</div></div>
             ${htmlContent}
-            <div class="no-print"><button onclick="window.print()">طباعة</button> <button onclick="window.close()">إغلاق</button></div>
+            <div class="no-print">
+    <button onclick="window.exportToPDF()">طباعة PDF</button>
+    <button onclick="window.close()">إغلاق</button>
+</div>
         </body></html>
     `);
   document.close();
@@ -763,6 +766,19 @@ function buildInvoiceHTML(title, number, date, partyName, docType, currency, ref
     lines.forEach(l => { rows += `<tr><td>${l[0]}</td><td>${l[1]}</td><td>${formatMoney(l[2])}</td><td>${formatMoney(l[3])}</td></tr>`; });
     return `<div class="card"><h2 style="text-align:center">${title}</h2><table><tr><td>الرقم</td><td>${number}</td><td>التاريخ</td><td>${date}</td></tr><tr><td>الطرف</td><td colspan="3">${partyName}</td></tr><tr><td>النوع</td><td colspan="3">${typeText}</td></tr><tr><td>المرجع</td><td>${ref}</td><td>العملة</td><td>${currency}</td></tr></table></div><div class="card"><table><tr><th>الصنف</th><th>الكمية</th><th>سعر الوحدة</th><th>الإجمالي</th></tr>${rows}<tr style="font-weight:bold"><td colspan="3">الإجمالي الكلي</td><td>${formatMoney(total)}</td></tr></table></div>`;
 }
+window.exportToPDF = function () {
+    const element = document.body;
+
+    const opt = {
+        margin: 0.5,
+        filename: 'invoice.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().from(element).set(opt).save();
+};
 
 // ======================== دوال الأمان وتسجيل الدخول ========================
 function sha256(input) {
