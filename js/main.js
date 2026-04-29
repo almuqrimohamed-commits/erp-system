@@ -735,8 +735,9 @@ window.previewDocument = function(type, id) {
         htmlContent = buildInvoiceHTML(title, number, date, partyName, docType, currency, ref, total, lines);
     }
     
-    const previewWindow = window.open('', '_blank', 'width=800,height=600');
-    previewWindow.document.write(`
+   const previewWindow = window;
+   document.open();
+document.write(`
         <html dir="rtl"><head><title>${title} ${isVoucher ? '' : queryResult[0]}</title>
         <style> body { font-family: 'Segoe UI', Tahoma, sans-serif; padding: 20px; background: #f2f2f2; } .card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); } table { width: 100%; border-collapse: collapse; margin: 10px 0; } td, th { border: 1px solid #ddd; padding: 8px; text-align: center; } th { background: #f2f2f2; } .company-header { display: flex; justify-content: space-between; margin-bottom: 20px; } .no-print { text-align: center; margin-top: 20px; } @media print { .no-print { display: none; } } </style></head>
         <body>
@@ -745,7 +746,7 @@ window.previewDocument = function(type, id) {
             <div class="no-print"><button onclick="window.print()">طباعة</button> <button onclick="window.close()">إغلاق</button></div>
         </body></html>
     `);
-    previewWindow.document.close();
+  document.close();
 };
 
 function buildVoucherHTML(title, number, date, ref, amount, amountWords, currencyId, description, fields) {
